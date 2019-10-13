@@ -14,12 +14,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        div {
+            /* border: 2px solid; */
+        }
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .main {
+            border: 1px solid;
+            width: 1000px;
+            height: 1000px;
+            margin: 10px;
+            overflow: auto;
+        }
+
+        .title {
+            height: 10%
+        }
+
+        .char {
+            height: 200px;
+        }
+
+        .fightSection {
+            height: 500px
+        }
+
+        .combatLog {
+            height: 70%;
+        }
+
+        .characterBox {
+            height: 150px;
+            width: 150px;
+            text-align: center;
+        }
+
+        .char-img {
+            margin: 0 25px 0 25px;
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="main" class="main">
+        <div class="title">
+            <h1>Star Wars RPG!</h1>
+        </div>
+        <div class="char" id="char-stage-1">
+            <div class="characterBox">
+                <div class="char-box-name">
+                    <h5>Char Name Here</h5>
+                </div>
+                <div class="char-img"><img src="https://via.placeholder.com/100" alt="100x100 placeholder image"></div>
+                <div class="char-hp" id="char-hp">
+                    <h5>HP</h5>
+                </div>
+            </div>
+            <div class="title">
+                <h2> Your Character</h2>
+            </div>
+        </div>
+        <div class="char" id="char-stage-2">
+            <h2>Enemies Available To Attack</h2>
+            <div class="characterBox">
+                <div class="char-box-name">
+                    <h5>Char Name Here</h5>
+                </div>
+                <div class="char-img"><img src="https://via.placeholder.com/100" alt="100x100 placeholder image"></div>
+                <div class="char-hp" id="char-hp">
+                    <h5>HP</h5>
+                </div>
+            </div>
+        </div>
+        <div class="fightSection" id="fightSection">
+            <div class="title">
+                <h2>Fight Section</h2>
+                <button id="attack-button">Attack!</button>
+            </div>
+            <div class="char" id="char-stage-3">
+                <h2>Defender</h2>
+                <div class="characterBox">
+                    <div class="char-box-name">
+                        <h5>Char Name Here</h5>
+                    </div>
+                    <div class="char-img"><img src="https://via.placeholder.com/100" alt="100x100 placeholder image">
+                    </div>
+                    <div class="char-hp" id="char-hp">
+                        <h5>HP</h5>
+                    </div>
+                </div>
+                <div class="combatLog">
+                    <h2>Combat Log</h2>
+                    <div class="combat-log-text-area" id="combat-log-text-area">
+                        <p>Some text about combat goes here</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
-    <script src="assets/javascript/game.js" async defer></script>
+
+        <script src="assets/javascript/game.js" async defer></script>
 </body>
 
 </html>
