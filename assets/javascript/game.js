@@ -43,6 +43,8 @@ function fighter(n, hp, att, def, id, imageUrl = "https://via.placeholder.com/10
     };
 
     this.attack = function (character) {
+        var combatLog = $("#combat-log-text-area");
+        combatLog.prepend(this.name, " attacks ", character.name, " for ", this.currentAttackPower, " damage.<br>");
         console.log(this.name, "attacks", character.name);
         console.log(this.name, 'is the', this.role)
         if (this.role === 'player') {
@@ -69,8 +71,7 @@ function fighter(n, hp, att, def, id, imageUrl = "https://via.placeholder.com/10
 
 
 // new fighter("obi-wan", 120, 6, 20);
-var characters = [new fighter("Rey", 120, 6, 8, "rey"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen"), new fighter("Luke", 275, 12, 20, "luke"), new fighter("Finn", 95, 30, 16, "finn")];
-console.log(characters);
+
 
 
 // first populate the characters list
@@ -103,97 +104,148 @@ var showCharacter = function (char, ind) {
 
     $("#char-stage-1").append(newChar);
 }
-
-// for loop to populate the characters onto the screen
-for (let index = 0; index < characters.length; index++) {
-    const element = characters[index];
-    showCharacter(element, index);
-
-}
-// setting a var for Player and current Enemy to be used later
 var currentEnemy;
 var playerCharacter;
 var defeatedEnemies = [];
+var characters = [];
+var reset = function () {
+    // clear all fields
+    $("#char-stage-1").empty();
+    var yourCharDiv = $("<div>");
+    yourCharDiv.addClass("title")
+    var yourCharText = $("<h2>").text("Your Character");
+    yourCharDiv.append(yourCharText);
+    $("#char-stage-1").append(yourCharDiv);
+    $("#char-stage-2").empty();
+    var enemiesSection = $("<h2>").text("Enemies Available To Attack");
+    $("#char-stage-2").append(enemiesSection);
+    $("#char-stage-3").empty();
+    var defenderSection = $("<h2>").text("Defender");
+    $("#char-stage-3").append(defenderSection);
+    $("#char-stage-3").append("<br>");
+    $(".combat-log-text-area").empty();
+    var combatLogSection = $("<p>").attr("id", "combat-log-text-area");
+    $(".combat-log-text-area").append(combatLogSection);
+
+    characters = [new fighter("Rey", 120, 6, 8, "rey"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen"), new fighter("Luke", 275, 12, 20, "luke"), new fighter("Finn", 95, 30, 16, "finn")];
+    console.log(characters);
+
+    // for loop to populate the characters onto the screen
+    for (let index = 0; index < characters.length; index++) {
+        const element = characters[index];
+        showCharacter(element, index);
+
+    }
+    // setting a var for Player and current Enemy to be used later
+    currentEnemy = null;
+    playerCharacter = null;
+    defeatedEnemies = [];
+
+    // on click listener to choose fighter
+
+    $(".characterBox").on("click", function (event) {
+
+        var target = $(this);
+        console.log(target);
+        console.log(characters[target.attr("data-char-index")].role);
+        console.log('current enemy is ', currentEnemy);
+        if (characters[target.attr("data-char-index")].role === "") {
+            // console.log(this);
+
+            // when player clicks a character, it becomes the player
+            target.addClass("player");
+            playerCharacter = $(this);
+            // for loop to update roles of each character 
+            for (let index = 0; index < characters.length; index++) {
+                const element = characters[index];
+                playerIndex = parseInt(target.attr("data-char-index"))
+                // console.log(index, parseInt($(this).attr("data-char-index")))
+                if (index === playerIndex) {
+                    // chosen becomes player 
+                    element.becomePlayer();
+                } else {
+                    // other characters become enemies and move to enemy section 
+                    element.becomeEnemy();
+                    var enemy = $("#" + element.id_label)
+                    enemy.detach();
+                    enemy.appendTo("#char-stage-2");
+                    enemy.addClass("enemy");
+                }
+
+
+
+
+
+
+            }
+        } else if (characters[target.attr("data-char-index")].role === "enemy" && !currentEnemy) {
+            // now we listen for a click on one of the enemies 
+            currentEnemy = $(this);
+            currentEnemy.detach();
+            currentEnemy.appendTo("#char-stage-3");
+
+        } else if (characters[target.attr("data-char-index")].role === "player") {
+            alert("You've clicked the chosen player character. Please choose an enemy to fight");
+        }
+    })
+
+
+
+    // attack button listener
+    $("#attack-button").on("click", function () {
+        if (!currentEnemy) {
+            alert("There is no target to attack!")
+        } else {
+            var combatLog = $("#combat-log-text-area");
+            combatLog.empty();
+            var attacker = characters[playerCharacter.attr("data-char-index")];
+            var defender = characters[currentEnemy.attr("data-char-index")];
+            attacker.attack(defender);
+            if (defender.isDead()) {
+                currentEnemy.detach();
+                defeatedEnemies.push(defender);
+                currentEnemy = null;
+                if (defeatedEnemies.length === characters.length - 1) {
+                    win();
+                }
+            }
+            if (attacker.isDead()) {
+                lose();
+            }
+
+        }
+    })
+
+}
+
+
 
 // win and lose functions
 var win = function () {
-    alert("You win! Good job!")
+    var combatLog = $(".combat-log-text-area");
+    combatLog.append("You win! Good job!");
+    var newButton = $("<button>");
+    newButton.attr("id", "reset-button").text("Reset");
+    combatLog.append(newButton);
+    $("#reset-button").on("click", function () {
+        reset()
+    });
 }
 var lose = function () {
-    alert("Nice try! Let's spar again!")
+    var combatLog = $(".combat-log-text-area");
+    combatLog.append("You lost! Nice try :/ Play again? ");
+    var newButton = $("<button>");
+    newButton.attr("id", "reset-button").text("Reset");
+    combatLog.append(newButton);
+    $("#reset-button").on("click", function () {
+        reset()
+    });
 }
-// on click listener to choose fighter
 
-$(".characterBox").on("click", function (event) {
-
-    var target = $(this);
-    console.log(target);
-    console.log(characters[target.attr("data-char-index")].role);
-    console.log('current enemy is ', currentEnemy);
-    if (characters[target.attr("data-char-index")].role === "") {
-        // console.log(this);
-
-        // when player clicks a character, it becomes the player
-        target.addClass("player");
-        playerCharacter = $(this);
-        // for loop to update roles of each character 
-        for (let index = 0; index < characters.length; index++) {
-            const element = characters[index];
-            playerIndex = parseInt(target.attr("data-char-index"))
-            // console.log(index, parseInt($(this).attr("data-char-index")))
-            if (index === playerIndex) {
-                // chosen becomes player 
-                element.becomePlayer();
-            } else {
-                // other characters become enemies and move to enemy section 
-                element.becomeEnemy();
-                var enemy = $("#" + element.id_label)
-                enemy.detach();
-                enemy.appendTo("#char-stage-2");
-                enemy.addClass("enemy");
-            }
+//start
+reset();
 
 
-
-
-
-
-        }
-    } else if (characters[target.attr("data-char-index")].role === "enemy" && !currentEnemy) {
-        // now we listen for a click on one of the enemies 
-        currentEnemy = $(this);
-        currentEnemy.detach();
-        currentEnemy.appendTo("#char-stage-3");
-
-    } else if (characters[target.attr("data-char-index")].role === "player") {
-        alert("You've clicked the chosen player character. Please choose an enemy to fight");
-    }
-})
-
-
-
-// attack button listener
-$("#attack-button").on("click", function () {
-    if (!currentEnemy) {
-        alert("There is no target to attack!")
-    } else {
-        var attacker = characters[playerCharacter.attr("data-char-index")];
-        var defender = characters[currentEnemy.attr("data-char-index")];
-        attacker.attack(defender);
-        if (defender.isDead()) {
-            currentEnemy.detach();
-            defeatedEnemies.push(defender);
-            currentEnemy = null;
-            if (defeatedEnemies.length === characters.length - 1) {
-                win();
-            }
-        }
-        if (attacker.isDead()) {
-            lose();
-        }
-
-    }
-})
 
 
 
