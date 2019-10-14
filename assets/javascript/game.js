@@ -207,11 +207,13 @@ var reset = function () {
 
                 if (defeatedEnemies.length === characters.length - 1) {
                     win();
+                    $(this).off();
                 }
                 currentEnemy = null;
             }
             if (attacker.isDead()) {
                 lose();
+                $(this).off();
             }
 
         }
