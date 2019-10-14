@@ -128,7 +128,7 @@ var reset = function () {
     var combatLogSection = $("<p>").attr("id", "combat-log-text-area");
     $(".combat-log-text-area").append(combatLogSection);
 
-    characters = [new fighter("Rey", 120, 6, 8, "rey", "../assets/images/rey.png"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen", "../assets/images/kylo.jpg"), new fighter("Luke", 275, 12, 20, "luke", "../assets/images/luke.jpg"), new fighter("Finn", 95, 30, 16, "finn", "../assets/images/finn.png")];
+    characters = [new fighter("Rey", 120, 6, 8, "rey", "assets/images/rey.png"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen", "assets/images/kylo.jpg"), new fighter("Luke", 275, 12, 20, "luke", "assets/images/luke.jpg"), new fighter("Finn", 95, 30, 16, "finn", "assets/images/finn.png")];
     console.log(characters);
 
     // for loop to populate the characters onto the screen
