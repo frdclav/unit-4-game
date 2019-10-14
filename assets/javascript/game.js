@@ -243,6 +243,9 @@ var lose = function () {
     });
 }
 
+
+// alert showing directions:
+alert("This is the Star Wars RPG game. Pick a character, then pick an enemy to fight. As you attach, your power grows, but you also take damage. Each character has a different attack power. Enemies attack power don't grow. If you defeat all enemies, you win. Enjoy!")
 //start
 reset();
 
