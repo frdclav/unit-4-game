@@ -69,7 +69,7 @@ div {
         }
         .under {
             background-color: burlywood;
-            opacity: 0.4;
+            opacity: 0.75;
             color: white;
             z-index: -1;
             
