@@ -88,8 +88,9 @@ var showCharacter = function (char, ind) {
     newCharName.append(newCharNameContent);
 
     // here we declare the character image div and content
-    var newCharImage = $("<div>").addClass("char-img")
+    var newCharImage = $("<div>")
     var newCharImageContent = $("<img>").attr("src", char.image)
+    newCharImageContent.addClass("char-img");
     newCharImage.append(newCharImageContent);
 
     // here we declare the character hp div and content
@@ -127,7 +128,7 @@ var reset = function () {
     var combatLogSection = $("<p>").attr("id", "combat-log-text-area");
     $(".combat-log-text-area").append(combatLogSection);
 
-    characters = [new fighter("Rey", 120, 6, 8, "rey"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen"), new fighter("Luke", 275, 12, 20, "luke"), new fighter("Finn", 95, 30, 16, "finn")];
+    characters = [new fighter("Rey", 120, 6, 8, "rey", "../assets/images/rey.png"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen", "../assets/images/kylo.jpg"), new fighter("Luke", 275, 12, 20, "luke", "../assets/images/luke.jpg"), new fighter("Finn", 95, 30, 16, "finn", "../assets/images/finn.png")];
     console.log(characters);
 
     // for loop to populate the characters onto the screen
@@ -182,6 +183,7 @@ var reset = function () {
             // now we listen for a click on one of the enemies 
             currentEnemy = $(this);
             currentEnemy.detach();
+            currentEnemy.addClass("defender");
             currentEnemy.appendTo("#char-stage-3");
 
         } else if (characters[target.attr("data-char-index")].role === "player") {
@@ -193,9 +195,7 @@ var reset = function () {
 
     // attack button listener
     $("#attack-button").on("click", function () {
-        if (!currentEnemy) {
-            alert("There is no target to attack!")
-        } else {
+        if (currentEnemy) {
             var combatLog = $("#combat-log-text-area");
             combatLog.empty();
             var attacker = characters[playerCharacter.attr("data-char-index")];
@@ -204,10 +204,11 @@ var reset = function () {
             if (defender.isDead()) {
                 currentEnemy.detach();
                 defeatedEnemies.push(defender);
-                currentEnemy = null;
+
                 if (defeatedEnemies.length === characters.length - 1) {
                     win();
                 }
+                currentEnemy = null;
             }
             if (attacker.isDead()) {
                 lose();

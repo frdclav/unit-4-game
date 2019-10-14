@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html class="no-js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./index_files/reset.css">
+    <link rel="stylesheet" href="./index_files/style.css">
+
+
+</head>
+
+<body style="">
+    <div id="main" class="main">
+        <div class="title">
+            <h1>Star Wars RPG!</h1>
+        </div>
+        <div class="char" id="char-stage-1"><div class="title"><h2>Your Character</h2></div><div class="characterBox player" id="rey" data-char-index="0"><div class="char-box-name"><h5>Rey</h5></div><div class="char-img"><img src="./index_files/100"></div><div class="char-hp"><h5 id="rey_hp">40</h5></div></div></div>
+        <div class="char" id="char-stage-2"><h2>Enemies Available To Attack</h2><div class="characterBox enemy" id="luke" data-char-index="2"><div class="char-box-name"><h5>Luke</h5></div><div class="char-img"><img src="./index_files/100"></div><div class="char-hp"><h5 id="luke_hp">275</h5></div></div></div>
+
+        <div class="fightSection" id="fightSection">
+            <div class="fightSection under"></div>
+            <div class="title over">
+                <h2>Fight Section</h2>
+                <button id="attack-button">Attack!</button>
+            </div>
+            <div class="char over" id="char-stage-3"><h2>Defender</h2><br><div class="characterBox enemy defender" id="finn" data-char-index="3"><div class="char-box-name"><h5>Finn</h5></div><div class="char-img"><img src="./index_files/100"></div><div class="char-hp"><h5 id="finn_hp">95</h5></div></div></div>
+            <div class="combatLog">
+                <!-- <h2>Combat Log</h2> -->
+                <div class="combat-log-text-area"><p id="combat-log-text-area">Kylo Ren attacks Rey for 9 damage.<br>Rey attacks Kylo Ren for 48 damage.<br></p></div>
+
+
+            </div>
+        </div>
+
+
+        <script src="./index_files/jquery-3.4.1.min.js.download" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="./index_files/game.js.download" async="" defer=""></script>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</div></body></html>

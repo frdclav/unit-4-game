@@ -1,0 +1,77 @@
+div {
+           color:gainsboro;
+        }
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .main {
+            border: 1px solid;
+            width: 1000px;
+            height: 1000px;
+            margin: 10px;
+            overflow: auto;
+            background-image: url('../images/wall.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .title {
+            height: 10%
+        }
+
+        .char {
+            height: 200px;
+            display: flex;
+            margin: 10px;
+            padding:10px;
+        }
+
+        .fightSection {
+            height: 500px
+        }
+
+        .combatLog {
+            height: 70%;
+        }
+
+        .characterBox {
+            height: 150px;
+            width: 150px;
+            text-align: center;
+            margin 3px;
+            display:inline;
+            background-color: grey;
+        }
+
+        .char-img {
+            margin: 0 25px 0 25px;
+            border: none;
+        }
+
+        button {
+            padding: 3px;
+        }
+        .player {
+            background-color: green;
+        }
+        .enemy {
+            background-color: red;
+        }
+        .defender {
+            background-color: black;
+        }
+        .under {
+            background-color: burlywood;
+            opacity: 0.4;
+            color: white;
+            z-index: -1;
+            
+        }
+        .over {
+position:  relative; 
+            top :-500px;
+        }
