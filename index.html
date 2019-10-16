@@ -12,79 +12,68 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-
-
 </head>
 
-<body>
-    <div id="main" class="main">
-        <div class="title ">
-            <h1 class="main-title">Star Wars RPG!</h1>
-        </div>
-        <div class="char" id="char-stage-1">
-            <!-- <div class="characterBox">
-                <div class="char-box-name">
-                    <h5>Char Name Here</h5>
-                </div>
-                <div class="char-img"><img src="https://via.placeholder.com/100" alt="100x100 placeholder image"></div>
-                <div class="char-hp" id="char-hp">
-                    <h5>HP</h5>
-                </div>
-            </div> -->
-            <br>
-            <div class="title">
-                <h2> Your Character</h2>
+<body class="text-center">
+    <div class="main container mx-auto  w-100 h-100" style="min-width:1110px;" id="main">
+        <div class="row title h-10 ">
+            <div class="col-md-6 d-flex  justify-content-right">
+                <h1 class="main-title">Star Wars RPG!</h1>
             </div>
-        </div>
-        <div class="char" id="char-stage-2">
-            <h2>Enemies Available To Attack</h2><br>
-            <!-- <div class="characterBox">
-                <div class="char-box-name">
-                    <h5>Char Name Here</h5>
-                </div>
-                <div class="char-img"><img src="https://via.placeholder.com/100" alt="100x100 placeholder image"></div>
-                <div class="char-hp" id="char-hp">
-                    <h5>HP</h5>
-                </div>
-            </div> -->
+
         </div>
 
-        <div class="fightSection" id="fightSection">
-            <div class="fightSection under"></div>
-            <div class="title over">
-                <h2>Fight Section</h2>
-                <button id="attack-button">Attack!</button>
+
+        <div class="row h-90 d-flex">
+            <div class="col-md-3 card" id="char">
+                <div class="card-body" id="char-stage-1">
+
+                    <h2 class="card-title">Your Character</h2>
+
+
+                </div>
+
             </div>
-            <div class="char over" id="char-stage-3">
-                <h2>Defender</h2><br>
-                <!-- <div class="characterBox">
-                    <div class="char-box-name">
-                        <h5>Char Name Here</h5>
+
+            <div class="col-md-6 d-flex flex-column align-content-stretch">
+                <div class="row card">
+                    <div class="card-body combat-log-text-area">
+
+                        <h2 class="card-title ">Combat Log</h2>
+
+                        <button class=" btn btn-danger  text-center" id="attack-button">Attack!</button>
+
+                        <p class="card-text" id="combat-log-text-area"></p>
                     </div>
-                    <div class="char-img"><img src="https://via.placeholder.com/100" alt="100x100 placeholder image">
-                    </div>
-                    <div class="char-hp" id="char-hp">
-                        <h5>HP</h5>
-                    </div>
-                </div> -->
-            </div>
-            <div class="combatLog over">
-                <!-- <h2>Combat Log</h2> -->
-                <div class="combat-log-text-area">
-                    <p id="combat-log-text-area"></p>
+
+
                 </div>
 
+                <div class="row card ">
+                    <div class="card-body" id="char-stage-3">
 
+                        <h2 class="card-title">Defender</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 card">
+                <div class="card-body" id="char-stage-2">
+                    <h2 class="card-title">Enemies Available To Attack</h2>
+                </div>
             </div>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="assets/javascript/game.js" async defer></script>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@ function fighter(n, hp, att, def, id, imageUrl = "https://via.placeholder.com/10
     this.id_label = id
     this.image = imageUrl;
 
-    this.takeDamage = function (num) {
+    this.takeDamage = function(num) {
         var hpNode = $("#" + this.id_label + "_hp");
         console.log(this.name, "currently has", this.healthPoints, "HP")
         this.healthPoints -= num;
@@ -24,27 +24,27 @@ function fighter(n, hp, att, def, id, imageUrl = "https://via.placeholder.com/10
 
     };
 
-    this.increaseAttack = function () {
+    this.increaseAttack = function() {
         console.log(this.name, "currently has", this.currentAttackPower, "attack power");
         this.currentAttackPower += this.baseAttackPower;
         console.log(this.name, "gets stronger! Its new attack power is", this.currentAttackPower);
 
     };
 
-    this.becomePlayer = function () {
+    this.becomePlayer = function() {
         this.role = 'player';
         console.log(this.name, 'is now a', this.role);
 
     };
 
-    this.becomeEnemy = function () {
+    this.becomeEnemy = function() {
         this.role = 'enemy';
         console.log(this.name, 'is now a', this.role);
     };
 
-    this.attack = function (character) {
+    this.attack = function(character) {
         var combatLog = $("#combat-log-text-area");
-        combatLog.prepend(this.name, " attacks ", character.name, " for ", this.currentAttackPower, " damage.<br>");
+        combatLog.append(this.name, " attacks ", character.name, " for ", this.currentAttackPower, " damage.<br>");
         console.log(this.name, "attacks", character.name);
         console.log(this.name, 'is the', this.role)
         if (this.role === 'player') {
@@ -59,7 +59,7 @@ function fighter(n, hp, att, def, id, imageUrl = "https://via.placeholder.com/10
         }
 
     };
-    this.isDead = function () {
+    this.isDead = function() {
         if (this.healthPoints <= 0) {
             return true;
         } else {
@@ -75,33 +75,34 @@ function fighter(n, hp, att, def, id, imageUrl = "https://via.placeholder.com/10
 
 
 // first populate the characters list
-var showCharacter = function (char, ind) {
+var showCharacter = function(char, ind) {
     // here we declare the main character box class
-    var newChar = $("<div>").addClass("characterBox").attr("id", char.id_label);
+    var newChar = $("<div>").addClass("characterBox card").attr("id", char.id_label);
 
     // here we add a data so we can refer back to char
     newChar.attr("data-char-index", ind)
 
     // here we declare the character name div and content
-    var newCharName = $("<div>").addClass("char-box-name");
+    var newCharName = $("<div>").addClass("char-box-name card-body");
     var newCharNameContent = $("<h5>").text(char.name);
+    newCharNameContent.addClass("card-text")
     newCharName.append(newCharNameContent);
 
     // here we declare the character image div and content
     var newCharImage = $("<div>")
     var newCharImageContent = $("<img>").attr("src", char.image)
-    newCharImageContent.addClass("char-img");
+    newCharImageContent.addClass("card-img-top char-img");
     newCharImage.append(newCharImageContent);
 
     // here we declare the character hp div and content
-    var newCharHP = $("<div>").addClass("char-hp");
+    var newCharHP = $("<div>").addClass("char-hp card-content");
     var newCharHpContent = $("<h5>").attr("id", char.id_label + "_hp").text(char.healthPoints);
     newCharHP.append(newCharHpContent);
 
     // here we append everything the main character box div
     newChar.append(newCharName);
-    newChar.append(newCharImage);
-    newChar.append(newCharHP)
+    newCharName.append(newCharImage);
+    newCharName.append(newCharHP)
 
     $("#char-stage-1").append(newChar);
 }
@@ -109,7 +110,7 @@ var currentEnemy;
 var playerCharacter;
 var defeatedEnemies = [];
 var characters = [];
-var reset = function () {
+var reset = function() {
     // clear all fields
     $("#char-stage-1").empty();
     var yourCharDiv = $("<div>");
@@ -124,11 +125,11 @@ var reset = function () {
     var defenderSection = $("<h2>").text("Defender");
     $("#char-stage-3").append(defenderSection);
     $("#char-stage-3").append("<br>");
-    $(".combat-log-text-area").empty();
-    var combatLogSection = $("<p>").attr("id", "combat-log-text-area");
-    $(".combat-log-text-area").append(combatLogSection);
+    $("#combat-log-text-area").empty();
+    // var combatLogSection = $("<p>").attr("id", "combat-log-text-area");
+    // $(".combat-log-text-area").append(combatLogSection);
 
-    characters = [new fighter("Rey", 120, 6, 8, "rey", "assets/images/rey.png"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen", "assets/images/kylo.jpg"), new fighter("Luke", 275, 12, 20, "luke", "assets/images/luke.jpg"), new fighter("Finn", 95, 30, 16, "finn", "assets/images/finn.png")];
+    characters = [new fighter("Rey", 120, 8, 12, "rey", "assets/images/rey.png"), new fighter("Kylo Ren", 210, 9, 10, "kyloRen", "assets/images/kylo.jpg"), new fighter("Luke", 275, 12, 20, "luke", "assets/images/luke.jpg"), new fighter("Finn", 195, 3, 16, "finn", "assets/images/finn.png")];
     console.log(characters);
 
     // for loop to populate the characters onto the screen
@@ -144,7 +145,7 @@ var reset = function () {
 
     // on click listener to choose fighter
 
-    $(".characterBox").on("click", function (event) {
+    $(".characterBox").on("click", function(event) {
 
         var target = $(this);
         console.log(target);
@@ -154,13 +155,13 @@ var reset = function () {
             // console.log(this);
 
             // when player clicks a character, it becomes the player
-            target.addClass("player");
+            target.addClass("player bg-info");
             playerCharacter = $(this);
             // for loop to update roles of each character 
             for (let index = 0; index < characters.length; index++) {
                 const element = characters[index];
                 playerIndex = parseInt(target.attr("data-char-index"))
-                // console.log(index, parseInt($(this).attr("data-char-index")))
+                    // console.log(index, parseInt($(this).attr("data-char-index")))
                 if (index === playerIndex) {
                     // chosen becomes player 
                     element.becomePlayer();
@@ -170,7 +171,7 @@ var reset = function () {
                     var enemy = $("#" + element.id_label)
                     enemy.detach();
                     enemy.appendTo("#char-stage-2");
-                    enemy.addClass("enemy");
+                    enemy.addClass("enemy bg-danger");
                 }
 
 
@@ -183,7 +184,7 @@ var reset = function () {
             // now we listen for a click on one of the enemies 
             currentEnemy = $(this);
             currentEnemy.detach();
-            currentEnemy.addClass("defender");
+            currentEnemy.addClass("defender bg-dark");
             currentEnemy.appendTo("#char-stage-3");
 
         } else if (characters[target.attr("data-char-index")].role === "player") {
@@ -194,7 +195,7 @@ var reset = function () {
 
 
     // attack button listener
-    $("#attack-button").on("click", function () {
+    $("#attack-button").on("click", function() {
         if (currentEnemy) {
             var combatLog = $("#combat-log-text-area");
             combatLog.empty();
@@ -224,31 +225,31 @@ var reset = function () {
 
 
 // win and lose functions
-var win = function () {
-    var combatLog = $(".combat-log-text-area");
+var win = function() {
+    var combatLog = $("#combat-log-text-area");
     combatLog.append("You win! Good job!");
     var newButton = $("<button>");
     newButton.attr("id", "reset-button").text("Reset");
     combatLog.append(newButton);
-    $("#reset-button").on("click", function () {
+    $("#reset-button").on("click", function() {
         reset()
     });
 }
-var lose = function () {
-    var combatLog = $(".combat-log-text-area");
+var lose = function() {
+    var combatLog = $("#combat-log-text-area");
     combatLog.append("You lost! Nice try :/ Play again? ");
     var newButton = $("<button>");
     newButton.attr("id", "reset-button").text("Reset");
     combatLog.append(newButton);
-    $("#reset-button").on("click", function () {
+    $("#reset-button").on("click", function() {
         reset()
     });
 }
 
-$(function () {
+$(function() {
     // alert showing directions:
     alert("This is the Star Wars RPG game. Pick a character, then pick an enemy to fight. As you attach, your power grows, but you also take damage. Each character has a different attack power. Enemies attack power don't grow. If you defeat all enemies, you win. Enjoy!")
-    //start
+        //start
     reset();
 });
 

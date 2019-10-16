@@ -1,98 +1,127 @@
 div {
-           color:gainsboro;
-        }
+    /* color:gainsboro; */
+}
 
-        html,
-        body {
-            width: 100vw;
-            height: 100vh;
-        }
 
-        .main {
-            border: 1px solid;
-            width: 100vw;
-            height: 100vh;
-            margin: 10px;
-            overflow: auto;
-            background-image: url('../images/wall.jpg');
-            background-position: center;
-            background-size: cover;
-        }
+/* html,
+body {
+    width: 100vw;
+    height: 100vh;
+} */
 
-        .title {
-            height: 10%
-        }
+body {
+    /* border: 1px solid; */
+    /* width: 100vw;
+    height: 100vh; */
+    /* margin: 10px; */
+    /* overflow: auto; */
+    background-image: url('../images/wall.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* max-width: 42em; */
+}
 
-        .char {
-            height: 200px;
-            display: flex;
-            margin: 10px;
-            padding:10px;
-        }
+.card {
+    opacity: 1;
+    background-color: transparent;
+}
 
-        .fightSection {
-            height: 500px
-        }
 
-        .combatLog {
-            height: 70%;
-        }
+/* .title {
+    height: 10%
+} */
 
-        .characterBox {
-            height: 150px;
-            width: 150px;
-            text-align: center;
-            margin :20px;
-            display:inline;
-            background-color: grey;
-        }
 
-        .char-img {
-            margin: 0 25px 0 25px;
-            border: none;
-            width:100px;
-            height:100px;
+/* .char {
+    height: 200px;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+} */
 
-        }
 
-        button {
-            padding: 3px;
-        }
-        .player {
-            background-color: green;
-        }
-        .enemy {
-            background-color: red;
-        }
-        .defender {
-            background-color: black;
-        }
-        .under {
-            background-color: burlywood;
-            opacity: 0.75;
-            color: white;
-            z-index: -1;
-            
-        }
-        .over {
-            position:  relative; 
-            top :-500px;
-        }
+/* .fightSection {
+    height: 500px
+}
 
-        #char-stage-3 {
-            top: -470px;
-        }
-        .main-title {
-            font-size : 4rem;
-            margin: 20px;
-        }
-        * {
-            font-family: 'Major Mono Display', monospace !important;
-        }
-        h2 {
-            font-size: 2rem;
-            margin: 15px;
-        }
-        button {
-            margin: 15px;
-        }
+.combatLog {
+    height: 70%;
+} */
+
+.characterBox {
+    height: auto;
+    width: 200px;
+    text-align: center;
+    margin: 20px;
+    /* display: inline; */
+    background-color: grey;
+}
+
+.char-img {
+    margin: 0 25px 0 25px;
+    border: none;
+    width: 100px;
+    height: 100px;
+}
+
+
+/* 
+button {
+    padding: 3px;
+} */
+
+.player {
+    background-color: green;
+}
+
+
+/* .enemy {
+    background-color: red;
+} */
+
+.defender {
+    background-color: black;
+    color: red;
+}
+
+
+/* .under {
+    background-color: burlywood;
+    opacity: 0.75;
+    color: white;
+    z-index: -1;
+} */
+
+
+/* .over {
+    position: relative;
+    top: -500px;
+} */
+
+
+/* #char-stage-3 {
+    top: -470px;
+} */
+
+
+/* .main-title {
+    font-size: 4rem;
+    margin: 20px;
+} */
+
+* {
+    font-family: 'Major Mono Display', monospace !important;
+}
+
+
+/* h2 {
+    font-size: 2rem;
+    margin: 15px;
+} */
+
+
+/* button {
+    margin: 15px;
+} */
